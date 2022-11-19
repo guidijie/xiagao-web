@@ -24,15 +24,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { View, SuccessFilled, List } from '@element-plus/icons-vue'
-import { ElRow, ElCol, ElImage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { SuccessFilled, View } from '@element-plus/icons-vue';
+import { ElCol, ElImage, ElRow } from 'element-plus';
+import { useRouter } from 'vue-router';
+
+interface MyViewType {
+  url: string; title: string; author: string;
+}
 
 const router = useRouter()
 
 const props = defineProps({
   videoList: {
-    type: List,
+    type: Array,
     default: () => [],
   },
   spanNum: {
@@ -51,13 +55,16 @@ function toViewDetails(): void {
   border-bottom: 1px solid #e2ebef;
   padding-bottom: 10px;
 }
+
 .video-list .image-scale {
   width: 262px;
   height: 164px;
 }
+
 .video-item .image-scale {
   transition: all 0.5s;
 }
+
 .video-item:hover .image-scale {
   transform: scale(1.3);
   transition: all 0.5s;
@@ -69,12 +76,14 @@ function toViewDetails(): void {
   font-size: 16px;
   margin: auto;
 }
+
 .video-list h3 {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #1c1b1b;
   font-size: 16px;
 }
+
 .video-list h4 {
   color: #6e6f70;
   font-size: 14px;
@@ -84,14 +93,17 @@ function toViewDetails(): void {
   display: flex;
   line-height: 22px;
 }
+
 .video-list h4 span {
   margin-left: 5px;
 }
+
 .video-list span {
   color: #6e6f70;
   font-size: 14px;
   font-weight: 400;
 }
+
 .video-img {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -101,6 +113,7 @@ function toViewDetails(): void {
   height: auto;
   position: relative;
 }
+
 .video-time {
   position: absolute;
   bottom: 0;
@@ -130,10 +143,12 @@ function toViewDetails(): void {
   border-radius: 3px;
   transition: all 0.3s ease-in-out;
 }
+
 .video-watch-later svg {
   width: 19.6px;
   height: 18.3px;
 }
+
 .video-item:hover .video-watch-later {
   transform: translateX(0);
   opacity: 1;

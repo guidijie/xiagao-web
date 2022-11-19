@@ -13,7 +13,8 @@
 </template>
 
 <script lang="ts" setup>
-import Header from '@/components/Header.vue'
-import { ref, reactive, onMounted } from 'vue'
+import Header from '@/components/Header.vue';
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

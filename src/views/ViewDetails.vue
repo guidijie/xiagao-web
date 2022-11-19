@@ -95,8 +95,8 @@
 </template>
 
 <script lang="ts" setup>
-import VideoList from '@/components/VideoList.vue'
-import { ref, reactive, onMounted } from 'vue'
+import VideoList from '@/components/VideoList.vue';
+import { reactive } from 'vue';
 
 const options = reactive({
   width: '100%', //播放器高度
@@ -118,7 +118,11 @@ const options = reactive({
 
 const errorHandler = () => true
 
-const videoList = reactive([
+interface MyViewType {
+  url: string; title: string; author: string;
+}
+
+const videoList: Array<MyViewType> = reactive([
   {
     url: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
     title: 'Accept money from your fans through tips.',

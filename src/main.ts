@@ -9,7 +9,7 @@ import './styles/index.css'
 // 图标库
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-// 阿里图标库
+// 字节图标库
 import * as IconParkVue from '@icon-park/vue-next'
 import '@icon-park/vue-next/styles/index.css'
 

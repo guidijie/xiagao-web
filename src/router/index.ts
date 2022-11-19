@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'view-details',
     component: () => import('@/views/ViewDetails.vue'),
   },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('@/views/user/UserInfo.vue'),
+  },
 ]
 
 const router = createRouter({
