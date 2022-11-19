@@ -53,7 +53,7 @@
       </el-col>
     </el-row>
   </div>
-  <div class="header">菜单</div>
+  <div class="header" :style="route.path === '/user' ? 'display: none' : ''">菜单</div>
 
   <transition name="side-menu">
     <div v-if="sideMenuShow" class="x_side_menu">
@@ -65,9 +65,10 @@
 <script lang="ts" setup>
 import { Search } from '@element-plus/icons-vue'
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 
 // 搜索框的值
 const searchValue = ref('')
@@ -88,7 +89,7 @@ const state = reactive({
 })
 
 // 页面添加监听
-window.addEventListener('scroll', watchScroll)
+// window.addEventListener('scroll', watchScroll)
 
 /**
  * 当滚动超过 90 时，实现吸顶效果
