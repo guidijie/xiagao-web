@@ -12,7 +12,7 @@
     <div style="padding-top: 80px">
       <div class="container">
         <el-row :gutter="35" style="margin-bottom: 110px">
-          <el-col class="x-cursor-pointer" :span="6" v-for="item of miaoshu">
+          <el-col :lg="6" :sm="8" :xs="12" class="x-cursor-pointer" :span="6" v-for="item of miaoshu">
             <el-image class="image-scale" :src="require('@/assets/' + item.url + '.png')" :fit="'cover'" style="margin-bottom: 25px" />
             <h3>{{ item.tile }}</h3>
             <p>{{ item.contend }}</p>

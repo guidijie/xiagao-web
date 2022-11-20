@@ -2,20 +2,20 @@
   <div class="top_bar" :class="navBarFixed == true ? 'navBarWrap' : ''">
     <el-row>
       <!-- 导航栏左侧 -->
-      <el-col :span="6">
+      <el-col :span="4">
         <el-row>
           <!-- 菜单按钮 -->
-          <el-col :span="3" style="margin-left: 50px" class="cursor">
+          <el-col :span="3" style="margin-left: 5%" class="cursor">
             <el-icon :size="30" @click="sideMenuShow = !sideMenuShow"><Operation /></el-icon>
           </el-col>
           <!-- logo -->
-          <el-col :span="3" style="margin-left: 20px" class="cursor">
+          <el-col :span="3" style="margin-left: 3%" class="cursor">
             <div class="logo-font" @click="toHome()">XiaGao</div>
           </el-col>
         </el-row>
       </el-col>
       <!-- 导航栏中间搜索按钮 -->
-      <el-col :span="12">
+      <el-col :span="16">
         <el-input v-model="searchValue" style="max-width: 550px" size="large" placeholder="Please Input">
           <template #suffix>
             <el-button class="search-button">
@@ -28,7 +28,7 @@
       </el-col>
 
       <!-- 导航栏右侧 -->
-      <el-col :span="6">
+      <el-col :span="4">
         <el-row>
           <el-col :span="4">
             <el-icon :size="30"><ChatLineSquare class="cursor" /></el-icon>
@@ -47,7 +47,7 @@
           </el-col>
           <!-- 上传按钮 -->
           <el-col :span="8">
-            <el-button color="#272626" style="width: 120px" round>上传视频</el-button>
+            <el-button color="#272626" style="max-width: 120px" round>上传视频</el-button>
           </el-col>
         </el-row>
       </el-col>

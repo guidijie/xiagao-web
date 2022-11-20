@@ -1,7 +1,7 @@
 <template>
   <div class="video-list">
     <el-row :gutter="35" style="text-align: left">
-      <el-col :span="spanNum" v-for="item of props.videoList" style="margin-bottom: 26px">
+      <el-col :lg="spanNum ? spanNum : 6" :sm="spanNum ? spanNum : 8" :xs="spanNum ? spanNum : 12" :span="spanNum" v-for="item of props.videoList" style="margin-bottom: 26px">
         <div class="video-item x-cursor-pointer">
           <div class="video-img" @click="toViewDetails">
             <el-image class="image-scale" :src="item.url" :fit="'cover'" />
@@ -24,12 +24,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { SuccessFilled, View } from '@element-plus/icons-vue';
-import { ElCol, ElImage, ElRow } from 'element-plus';
-import { useRouter } from 'vue-router';
+import { SuccessFilled, View } from '@element-plus/icons-vue'
+import { ElCol, ElImage, ElRow } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 interface MyViewType {
-  url: string; title: string; author: string;
+  url: string
+  title: string
+  author: string
 }
 
 const router = useRouter()
@@ -57,8 +59,14 @@ function toViewDetails(): void {
 }
 
 .video-list .image-scale {
-  width: 262px;
-  height: 164px;
+  min-width: 262px;
+  min-height: 164px;
+}
+
+:deep(.el-image) {
+  position: relative;
+  display: block;
+  overflow: hidden;
 }
 
 .video-item .image-scale {
@@ -107,10 +115,8 @@ function toViewDetails(): void {
 .video-img {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  max-height: 164px;
   margin-bottom: 20px;
   overflow: hidden;
-  height: auto;
   position: relative;
 }
 
@@ -145,8 +151,8 @@ function toViewDetails(): void {
 }
 
 .video-watch-later svg {
-  width: 19.6px;
-  height: 18.3px;
+  max-width: 19.6px;
+  max-height: 18.3px;
 }
 
 .video-item:hover .video-watch-later {
