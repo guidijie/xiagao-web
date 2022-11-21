@@ -3,8 +3,8 @@
     <div>
       <div>
         <el-row>
-          <el-col :span="7" class="auto-height">
-            <div class="bottom-box" ref="menu">
+          <el-col :span="7" class="user-info-menu">
+            <div class="bottom-box scroll" ref="menu">
               <!-- 头像名称 -->
               <div style="margin: 18px 0px">
                 <el-row>
@@ -36,9 +36,8 @@
               </div>
             </div>
           </el-col>
-          <el-col :span="17" class="auto-height">
-            <div class="bottom-box bg-router-view" ref="info">
-              <!-- <div style="height: 400px" :id="item + ''" v-for="item in 5">{{ item }}</div> -->
+          <el-col :span="17">
+            <div ref="info">
               <router-view />
             </div>
           </el-col>
@@ -51,6 +50,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { setHeight } from '@/utils/HeightUtils'
 
 const router = useRouter()
 const route = useRoute()
@@ -59,22 +59,16 @@ let menu = ref<null | HTMLElement>(null)
 let info = ref<null | HTMLElement>(null)
 
 onMounted(() => {
-  setHeight()
+  setHeight([menu.value, info.value], 100)
 })
 
 onBeforeUnmount(() => {
   window.onresize = null
 })
 
-const setHeight = () => {
-  const num = document.documentElement.clientHeight || document.body.clientHeight
-  const height = num - 100 + 'px'
-  menu.value!.style.maxHeight = height
-  info.value!.style.maxHeight = height
-}
-
 window.onresize = () => {
-  setHeight()
+  console.log(1111)
+  setHeight([menu.value, info.value], 100)
 }
 
 let show = ref(false)
@@ -146,6 +140,9 @@ function toVideo(path: string): void {
 </script>
 
 <style scoped>
+.user-info-menu {
+  border-right: 1px rgb(238, 238, 238) solid;
+}
 .hd-uc {
   display: flex;
   font-weight: 700;
@@ -160,9 +157,5 @@ function toVideo(path: string): void {
   font-size: 16px;
   padding-left: 5px;
   padding-bottom: 18px;
-}
-
-.bottom-box {
-  overflow: scroll;
 }
 </style>

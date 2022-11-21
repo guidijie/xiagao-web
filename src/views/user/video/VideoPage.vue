@@ -1,10 +1,12 @@
 <template>
-  <div class="bg-box">
+  <div>
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="User" name="first">
-        <el-scrollbar :height="domHeight">
-          <div style="height: 900px">User</div>
-        </el-scrollbar>
+        <div ref="d1">
+          <el-scrollbar :height="200">
+            <div style="height: 900px">User</div>
+          </el-scrollbar>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="Config" name="second">Config</el-tab-pane>
       <el-tab-pane label="Role" name="third">Role</el-tab-pane>
@@ -13,19 +15,34 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive, onBeforeUnmount, getCurrentInstance } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
-import { getOffsetHeight } from '@/utils/domHeight'
+import { setHeight } from '@/utils/HeightUtils'
 
 const activeName = ref('first')
-let domHeight = ref(0)
+
+const refs: any[] = reactive<HTMLElement[]>([])
+
 onMounted(() => {
-  domHeight.value = getOffsetHeight()
-  console.log(domHeight.value)
+  getRefs()
 })
 
+onBeforeUnmount(() => {
+  window.onresize = null
+})
+
+const getRefs = () => {
+  if (!refs || refs.length < 1) {
+    const current = getCurrentInstance()!.ctx.$refs
+    for (const key in current) {
+      refs.push(current[key])
+    }
+  }
+  setHeight(refs, 160)
+}
+
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
+  // console.log(tab, event)
 }
 </script>
 <style scoped></style>

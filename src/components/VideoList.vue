@@ -43,7 +43,7 @@ const props = defineProps({
   },
   spanNum: {
     type: Number,
-    default: () => 6,
+    default: () => null,
   },
 })
 

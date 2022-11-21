@@ -4,9 +4,7 @@
 }
 
 .bg-router-view {
-  height: calc(100% - 20px);
-  background-color: #f4f4f4;
-  padding: 10px 10px 10px 10px;
+  height: calc(100vh - 100px);
 }
 
 .bg-box {
@@ -34,6 +32,10 @@
   max-width: 1100px;
   border-bottom: 1px solid #e2ebef;
   height: 100%;
+}
+
+.scroll {
+  overflow: scroll;
 }
 
 /* 全局设置滚动条无高宽，使用element-plus的滚动条 */
