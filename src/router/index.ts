@@ -17,9 +17,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/ViewDetails.vue'),
   },
   {
-    path: '/user',
-    name: 'user',
+    path: '/user-info',
+    name: 'user-info',
     component: () => import('@/views/user/UserInfo.vue'),
+    children: [
+      {
+        path: 'video-page',
+        name: 'video-page',
+        component: () => import('@/views/user/video/VideoPage.vue'),
+      },
+    ],
   },
 ]
 

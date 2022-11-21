@@ -41,7 +41,9 @@
             <el-dropdown ref="dropdown" trigger="contextmenu" placement="bottom-end" popper-class="my-dropdown">
               <div style="margin: auto" class="cursor"><el-avatar :size="50" :src="state.circleUrl" @click="dropdownClick()" /></div>
               <template #dropdown>
-                <div class="dropdown-menu"></div>
+                <div class="dropdown-menu">
+                  <span @click="toUserInfo">个人中心</span>
+                </div>
               </template>
             </el-dropdown>
           </el-col>
@@ -53,7 +55,7 @@
       </el-col>
     </el-row>
   </div>
-  <div class="header" :style="route.path === '/user' ? 'display: none' : ''">菜单</div>
+  <div class="header" :style="checkPath() ? 'display: none' : ''">菜单</div>
 
   <transition name="side-menu">
     <div v-if="sideMenuShow" class="x_side_menu">
@@ -88,9 +90,6 @@ const state = reactive({
   sizeList: ['small', '', 'large'] as const,
 })
 
-// 页面添加监听
-// window.addEventListener('scroll', watchScroll)
-
 /**
  * 当滚动超过 90 时，实现吸顶效果
  */
@@ -105,6 +104,21 @@ function watchScroll(): void {
 }
 
 /**
+ * 判断路径是否包含 'user'
+ */
+function checkPath(): boolean {
+  const isTrue = route.path.includes('/user')
+  if (isTrue) {
+    // 页面移除监听
+    window.removeEventListener('scroll', watchScroll)
+  } else {
+    // 页面添加监听
+    window.addEventListener('scroll', watchScroll)
+  }
+  return isTrue
+}
+
+/**
  * 右侧下拉菜单点击出现
  */
 function dropdownClick(): void {
@@ -113,6 +127,10 @@ function dropdownClick(): void {
 
 function toHome(): void {
   router.push({ path: '/index' })
+}
+
+function toUserInfo() {
+  router.push({ path: '/user-info' })
 }
 </script>
 <style scoped>
@@ -196,7 +214,7 @@ function toHome(): void {
 
 .dropdown-menu {
   width: 300px;
-  height: 420px;
+  min-height: 100px;
   /* border: 1px saddlebrown solid; */
   margin-top: 20px;
 }

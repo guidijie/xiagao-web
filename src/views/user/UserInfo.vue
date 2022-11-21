@@ -2,10 +2,9 @@
   <div class="container">
     <div>
       <div>
-        <el-row style="height: 100%">
-          <el-col :span="7">
-            <!-- <div style="position: fixed; height: 90%; width: 21.1%; overflow: scroll"> -->
-            <div>
+        <el-row>
+          <el-col :span="7" class="auto-height">
+            <div class="bottom-box" ref="menu">
               <!-- 头像名称 -->
               <div style="margin: 18px 0px">
                 <el-row>
@@ -30,17 +29,17 @@
                     <span><me theme="outline" style="width: 30px; height: auto" size="24" fill="#333" /></span>
                     <span style="left: 0px; padding-left: 10px; height: auto; line-height: 26px">{{ menu.title }}</span>
                   </div>
-                  <div @click="toView(item.idName)" v-for="(item, index) in menu.children" class="sidebar x-cursor-pointer">
+                  <div @click="toVideo(item.path)" v-for="(item, index) in menu.children" class="sidebar x-cursor-pointer">
                     <span>{{ item.title }}</span>
                   </div>
                 </div>
               </div>
             </div>
           </el-col>
-          <el-col :span="17">
-            <!-- <div style="position: fixed; height: 90%; width: 51.25%; background-color: antiquewhite; overflow: scroll"> -->
-            <div style="background-color: antiquewhite">
-              <div style="height: 200px" :id="item + ''" v-for="item in 5">{{ item }}</div>
+          <el-col :span="17" class="auto-height">
+            <div class="bottom-box bg-router-view" ref="info">
+              <!-- <div style="height: 400px" :id="item + ''" v-for="item in 5">{{ item }}</div> -->
+              <router-view />
             </div>
           </el-col>
         </el-row>
@@ -50,7 +49,33 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
+
+let menu = ref<null | HTMLElement>(null)
+let info = ref<null | HTMLElement>(null)
+
+onMounted(() => {
+  setHeight()
+})
+
+onBeforeUnmount(() => {
+  window.onresize = null
+})
+
+const setHeight = () => {
+  const num = document.documentElement.clientHeight || document.body.clientHeight
+  const height = num - 100 + 'px'
+  menu.value!.style.maxHeight = height
+  info.value!.style.maxHeight = height
+}
+
+window.onresize = () => {
+  setHeight()
+}
 
 let show = ref(false)
 
@@ -84,7 +109,10 @@ const menus = reactive([
   {
     title: 'Videos',
     icon: 'me',
-    children: [{ title: 'Uploaded Videos' }, { title: 'Favorite Videos' }],
+    children: [
+      { title: 'Uploaded Videos', path: '/user-info/video-page' },
+      { title: 'Favorite Videos', path: '/user-info/video-page' },
+    ],
   },
   {
     title: 'Playlists',
@@ -98,11 +126,22 @@ const menus = reactive([
   },
 ])
 
+/**
+ * 锚点功能实现
+ */
 function toView(idName: string): void {
   const item = document.getElementById(idName)
   if (item) {
     item.scrollIntoView()
   }
+}
+
+/**
+ * 跳转到视频页
+ * @param path 路径
+ */
+function toVideo(path: string): void {
+  router.push(path)
 }
 </script>
 
@@ -121,5 +160,9 @@ function toView(idName: string): void {
   font-size: 16px;
   padding-left: 5px;
   padding-bottom: 18px;
+}
+
+.bottom-box {
+  overflow: scroll;
 }
 </style>
