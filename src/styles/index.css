@@ -3,6 +3,21 @@
   margin: 0;
 }
 
+input,
+select,
+option,
+textarea {
+  border: 0;
+  outline: none;
+}
+
+:focus {
+  outline: none;
+}
+::-moz-focus-inner {
+  border-color: transparent;
+}
+
 .bg-router-view {
   height: calc(100vh - 100px);
 }
@@ -31,7 +46,21 @@
   margin: auto;
   max-width: 1100px;
   border-bottom: 1px solid #e2ebef;
-  height: 100%;
+}
+
+.auto-height-100 {
+  height: calc(100vh - 100px);
+}
+.auto-height-120 {
+  height: calc(100vh - 140px);
+}
+
+.auto-height-190 {
+  height: calc(100vh - 190px);
+}
+
+.auto-height-200 {
+  height: calc(100vh - 200px);
 }
 
 .scroll {

@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <div class="auto-height-140">
     <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
       <el-tab-pane label="User" name="first">
-        <div ref="d1">
-          <el-scrollbar :height="200">
-            <div style="height: 900px">User</div>
-          </el-scrollbar>
-        </div>
+        <el-scrollbar class="auto-height-190">
+          <div style="height: 900px">User</div>
+        </el-scrollbar>
       </el-tab-pane>
       <el-tab-pane label="Config" name="second">Config</el-tab-pane>
       <el-tab-pane label="Role" name="third">Role</el-tab-pane>

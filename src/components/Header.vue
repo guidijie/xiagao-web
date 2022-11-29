@@ -19,9 +19,7 @@
         <el-input v-model="searchValue" style="max-width: 550px" size="large" placeholder="Please Input">
           <template #suffix>
             <el-button class="search-button">
-              <el-icon :size="22">
-                <Search />
-              </el-icon>
+              <Search style="width: 22px" />
             </el-button>
           </template>
         </el-input>
