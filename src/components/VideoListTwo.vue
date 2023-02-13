@@ -1,23 +1,38 @@
 <template>
   <div class="video-list">
-    <el-row :gutter="35" style="text-align: left">
-      <el-col :lg="spanNum ? spanNum : 6" :sm="spanNum ? spanNum : 8" :xs="spanNum ? spanNum : 12" :span="spanNum" v-for="item of props.videoList" style="margin-bottom: 26px">
+    <el-row :gutter="35" style="text-align: left; margin-right: 0">
+      <el-col v-for="item of props.videoList" style="margin-left: 0; margin-right: 0; margin-bottom: 20px">
         <div class="video-item x-cursor-pointer">
-          <div class="video-img" @click="toViewDetails">
-            <el-image class="image-scale" :src="item.url" :fit="'cover'" />
-            <spam class="video-watch-later">
-              <View />
-            </spam>
-            <spam class="video-time">15:20</spam>
-          </div>
-          <h3 @click="toViewDetails" class="x-text-overflow">{{ item.title }}</h3>
-          <h4>
-            {{ item.author }}
-            <span>
-              <SuccessFilled style="height: 20px; width: 20px" color="#67C23A" />
-            </span>
-          </h4>
-          <span>686K views .1 week ago</span>
+          <el-row>
+            <el-col :span="8">
+              <div class="video-img" @click="toViewDetails">
+                <el-image class="image-scale" :src="item.url" :fit="'cover'" />
+                <spam class="video-watch-later">
+                  <View />
+                </spam>
+                <spam class="video-time">15:20</spam>
+              </div>
+            </el-col>
+            <el-col :span="10">
+              <div style="margin-left: 20px">
+                <h3 @click="toViewDetails" class="x-text-overflow">{{ item.title }}</h3>
+                <h4>
+                  {{ item.author }}
+                  <span>
+                    <SuccessFilled style="height: 20px; width: 20px" color="#67C23A" />
+                  </span>
+                </h4>
+                <span>686K views .1 week ago</span>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div style="height: 155px; line-height: 155px; text-align: right">
+                <thumbs-up class="icon-right-20" theme="outline" size="24" fill="#333" />
+                <like class="icon-right-20" theme="outline" size="24" fill="#333" />
+                <share-three class="icon-right-20" theme="outline" size="24" fill="#333" />
+              </div>
+            </el-col>
+          </el-row>
         </div>
       </el-col>
     </el-row>
@@ -115,7 +130,6 @@ function toViewDetails(): void {
 .video-img {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  margin-bottom: 20px;
   overflow: hidden;
   position: relative;
 }
@@ -158,5 +172,9 @@ function toViewDetails(): void {
 .video-item:hover .video-watch-later {
   transform: translateX(0);
   opacity: 1;
+}
+
+.icon-right-20 {
+  margin-right: 20px;
 }
 </style>

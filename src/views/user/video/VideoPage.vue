@@ -22,7 +22,7 @@ const activeName = ref('first')
 const refs: any[] = reactive<HTMLElement[]>([])
 
 onMounted(() => {
-  getRefs()
+  // getRefs()
 })
 
 onBeforeUnmount(() => {

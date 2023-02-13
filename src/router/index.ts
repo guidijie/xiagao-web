@@ -20,7 +20,13 @@ const routes: Array<RouteRecordRaw> = [
     path: '/user-info',
     name: 'user-info',
     component: () => import('@/views/user/UserInfo.vue'),
+    redirect: '/user-info/index',
     children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/user/UserHome.vue'),
+      },
       {
         path: 'video-page',
         name: 'video-page',

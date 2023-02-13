@@ -51,7 +51,7 @@ textarea {
 .auto-height-100 {
   height: calc(100vh - 100px);
 }
-.auto-height-120 {
+.auto-height-140 {
   height: calc(100vh - 140px);
 }
 

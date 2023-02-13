@@ -19,6 +19,11 @@
                   </div>
                 </el-col>
               </el-row>
+              <el-row>
+                <el-col :span="24">
+                  <span @click="toUserIndex()">首页</span>
+                </el-col>
+              </el-row>
             </div>
 
             <!-- 菜单 -->
@@ -70,29 +75,27 @@ window.onresize = () => {
 let show = ref(false)
 
 const menus = reactive([
+  // {
+  //   title: '主页',
+  //   icon: 'me',
+  //   children: [
+  //     { title: '最新发布', idName: '1' },
+  //     { title: '最多播放', idName: '2' },
+  //     { title: '最多收藏', idName: '3' },
+  //   ],
+  // },
   {
-    title: 'Account',
-    icon: 'me',
-    children: [
-      { title: 'My Account', idName: '1' },
-      { title: 'Blocked Users', idName: '2' },
-      { title: 'Change Password', idName: '3' },
-      { title: 'Change Email', idName: '4' },
-      { title: 'Manage Subscriptions', idName: '5' },
-    ],
-  },
-  {
-    title: 'Notifications',
+    title: '动态',
     icon: 'me',
     children: [{ title: 'Manage Notifications' }],
   },
   {
-    title: 'Donations',
+    title: '投稿',
     icon: 'me',
     children: [{ title: 'Manage Donations' }, { title: 'Add Credit' }],
   },
   {
-    title: 'Channel and Profile',
+    title: '专栏',
     icon: 'me',
     children: [{ title: 'Account Settings' }, { title: 'Profile Settings' }, { title: 'Change Avatar' }],
   },
@@ -104,16 +107,6 @@ const menus = reactive([
       { title: 'Favorite Videos', path: '/user-info/video-page' },
     ],
   },
-  {
-    title: 'Playlists',
-    icon: 'me',
-    children: [{ title: 'Manage Playlists' }],
-  },
-  {
-    title: 'Messages',
-    icon: 'me',
-    children: [{ title: 'New Message' }, { title: 'Sent' }],
-  },
 ])
 
 /**
@@ -124,6 +117,13 @@ function toView(idName: string): void {
   if (item) {
     item.scrollIntoView()
   }
+}
+
+/**
+ * 回到首页
+ */
+function toUserIndex(): void {
+  router.push('/user-info/index')
 }
 
 /**
