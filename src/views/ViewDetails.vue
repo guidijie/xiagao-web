@@ -79,8 +79,10 @@
                 </el-row>
               </div>
             </div>
-
-            <div style="height: 300px; margin: auto; background-color: aquamarine"><span>评论区</span></div>
+            
+            <div style="text-align: left;">
+              <Comment />
+            </div>
           </el-col>
           <!-- 右边内容 -->
           <el-col :span="6">
@@ -96,6 +98,7 @@
 
 <script lang="ts" setup>
 import VideoList from '@/components/VideoList.vue';
+import Comment from '@/components/Comment.vue';
 import { reactive } from 'vue';
 
 const options = reactive({

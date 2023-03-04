@@ -20,11 +20,15 @@ import operate from '@/utils/operate'
 import videoPlay from 'vue3-video-play' // 引入组件
 import 'vue3-video-play/dist/style.css' // 引入css
 
+// 评论组件
+import UndrawUi from 'undraw-ui'
+import 'undraw-ui/dist/style.css'
+
 const app = createApp(App)
 
 app.config.globalProperties.$operate = operate
 
-app.use(router).use(ElementPlus).use(videoPlay)
+app.use(router).use(ElementPlus).use(videoPlay).use(UndrawUi)
 
 // 注册全局字节图标
 for (const [key, component] of Object.entries(IconParkVue)) {
